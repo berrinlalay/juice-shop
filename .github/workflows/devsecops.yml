@@ -1,0 +1,21 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  security-checks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run ESLint
+      run: npx eslint .
+
+    - name: Run npm audit
+      run: npm audit
